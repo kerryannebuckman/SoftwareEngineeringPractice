@@ -19,6 +19,13 @@ class BankAccountTest {
         bankAccount.withdraw(100);
 
         assertEquals(100, bankAccount.getBalance());
+
+        //negative amount
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.withdraw(-100));
+
+
+        //balance - amount is negative
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.withdraw(101));
     }
 
     @Test
