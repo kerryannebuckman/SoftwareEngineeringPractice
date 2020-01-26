@@ -52,6 +52,17 @@ class BankAccountTest {
         // Border Case - Yes (Single case)
         assertFalse(BankAccount.isEmailValid("abc-@mail.com"));
 
+    //new
+        //Dash in middle, not border
+        assertTrue(BankAccount.isEmailValid("abc-de@mail.com"));
+
+        //dash in middle, left border
+        assertTrue(BankAccount.isEmailValid("a-bc@mail.com"));
+
+        //dash on left edge
+        assertTrue(BankAccount.isEmailValid("-ed@mail.com"));
+    //end
+
     //underscores valid
         // Equivalence Class - Underscore in prefix not on edge
         // Border Case - No
@@ -61,6 +72,17 @@ class BankAccountTest {
         // Equivalence Class - Underscore on right edge of prefix
         // Border Case - Yes (Single case)
         assertFalse(BankAccount.isEmailValid("abc_@mail.com"));
+
+    //new
+        //dash in middle, left border
+        assertTrue(BankAccount.isEmailValid("a_def@mail.com"));
+
+        //dash on right edge
+        assertFalse(BankAccount.isEmailValid("abc_@mail.com"));
+
+        //dash on left edge
+        assertFalse(BankAccount.isEmailValid("_def@mail.com"));
+    //end
 
     //periods valid
         // Equivalence Class - period in prefix, not on edge
@@ -72,10 +94,41 @@ class BankAccountTest {
         // Border Case - Yes (Single case)
         assertFalse(BankAccount.isEmailValid("abc.@mail.com"));
 
+    //new
+        //period in middle, left border
+        assertTrue(BankAccount.isEmailValid("a.def@mail.com"));
+
+        //period on right edge
+        assertFalse(BankAccount.isEmailValid("abc.@mail.com"));
+
+        //period on left edge
+        assertFalse(BankAccount.isEmailValid(".def@mail.com"));
+    //end
+
     //special symbols invalid
         // Equivalence Class - * in prefix
         // Border Case - No
         assertFalse(BankAccount.isEmailValid("abc*de@mail.com"));
+    //new
+        //special character right edge
+        assertFalse(BankAccount.isEmailValid("abc*@mail.com"));
+
+        //special character right border
+        assertFalse(BankAccount.isEmailValid("abc*d@mail.com"));
+
+        //special character left edge
+        assertFalse(BankAccount.isEmailValid("*de@mail.com"));
+
+        //special character left border
+        assertFalse(BankAccount.isEmailValid("a*de@mail.com"));
+
+        //special character double border
+        assertFalse(BankAccount.isEmailValid("c*d@mail.com"));
+
+        //special character double edge
+        assertFalse(BankAccount.isEmailValid("*@mail.com"));
+    //end
+
         // Equivalence Class - @ in prefix
         // Border Case - No
         assertFalse(BankAccount.isEmailValid("abc@de@mail.com"));
@@ -88,6 +141,62 @@ class BankAccountTest {
         // Equivalence Class - $ in prefix
         // Border Case - No
         assertFalse(BankAccount.isEmailValid("abc$de@mail.com"));
+
+    //new
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc!def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc@def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc#def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc$def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc%def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc^def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc&def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc(def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc)def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc+def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc=def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc'def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc;def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc,def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc[def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc]def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc{def@mail.com"));
+
+        //special character
+        assertFalse(BankAccount.isEmailValid("abc}def@mail.com"));
+    //end
 
         // Missing alot of border cases
         // Missing equivalence cases for other special characters
