@@ -33,6 +33,7 @@ public class BankAccount {
      * @post reduces the balance by amount if amount is non-negative and smaller than balance
      * if amount is negative, throw invalid argument
      * if balance - amount = to a negative number, throw runtime exception
+     * accurate to cents (the 100ths place) because you should not be able to take out half a penny)
      */
     public void withdraw (double amount) throws IllegalArgumentException {
         if(amount < 0){

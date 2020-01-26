@@ -32,6 +32,33 @@ class BankAccountTest {
         // Border Case - No
         assertThrows(IllegalArgumentException.class, ()-> bankAccount.withdraw(101));
 
+    //new- This will be accurate to the cents
+        //withdraw 0
+        BankAccount bankAccount2 = new BankAccount("a@b.com", 200);
+        bankAccount2.withdraw(0);
+
+        //withdraw .01
+        bankAccount2.withdraw(0.01);
+        assertEquals(199.99, bankAccount2.getBalance());
+
+        //withdraw -.01
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(-0.01));
+
+
+        //withdraw .01 more than you have
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.withdraw(200));
+
+        //withdraw .01 less than you have
+        BankAccount bankAccount3 = new BankAccount("a@b.com", 200);
+        bankAccount3.withdraw(199.99);
+        assertEquals(0.01, bankAccount3.getBalance());
+
+        //withdraw the exact amount you have
+        BankAccount bankAccount4 = new BankAccount("a@b.com", 200);
+        bankAccount4.withdraw(200);
+        assertEquals(0, bankAccount4.getBalance());
+    //end
+
         // All Border Cases
     }
 
