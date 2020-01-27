@@ -5,8 +5,8 @@ public class BankAccount {
     private String email;
     private double balance;
 
-    public static final String[] prefix_invalid_endings = {"-", ".", "_"};
-    public static final String[] invalid_overall = {"*", "(", "%", "%", "$", "^", "*"};
+    public static final String prefix_invalid_endings = "-._";
+    public static final String invalid_overall = "!#$%^&*()+=,<>/?;:'\"[{]}\\|";
 
     /**
      * @throws IllegalArgumentException if email is invalid
@@ -15,6 +15,7 @@ public class BankAccount {
         if (isEmailValid(email)){
             this.email = email;
             this.balance = startingBalance;
+            roundToCent();
         }
         else {
             throw new IllegalArgumentException("Email address: " + email + " is invalid, cannot create account");
@@ -43,7 +44,12 @@ public class BankAccount {
             throw new IllegalArgumentException("Cannot draw more funds than are contained");
         }
         balance -= amount;
+        roundToCent();
+    }
 
+
+    private void roundToCent(){
+        balance = ((double)Math.round(balance*100))/100;
     }
 
 
@@ -52,8 +58,8 @@ public class BankAccount {
             return false;
         }
 
-        for(String i : invalid_overall){
-            if(email.contains(i)){
+        for(char i : invalid_overall.toCharArray()){
+            if(email.contains(i+"")){
                 return false;
             }
         }
@@ -67,8 +73,8 @@ public class BankAccount {
             return false;
         }
 
-        for(String i : prefix_invalid_endings){
-            if(prefix.endsWith(i)){
+        for(char i : prefix_invalid_endings.toCharArray()){
+            if(prefix.endsWith(i+"")){
                 return false;
             }
         }
