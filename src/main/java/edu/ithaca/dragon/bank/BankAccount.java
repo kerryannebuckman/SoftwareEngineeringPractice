@@ -45,7 +45,7 @@ public class BankAccount {
      */
     public void deposit (double amount){
         if(!isAmountValid(amount)){
-            throw new IllegalArgumentException("Must withdraw a positive amount!");
+            throw new IllegalArgumentException("Must deposit a positive amount! with 2 or less significant digits");
         }
         balance += amount;
         roundToCent();
@@ -58,7 +58,8 @@ public class BankAccount {
      * @param amount
      */
     public void transfer (BankAccount receivingAccount, double amount){
-
+        withdraw(amount);
+        receivingAccount.deposit(amount);
     }
 
 
