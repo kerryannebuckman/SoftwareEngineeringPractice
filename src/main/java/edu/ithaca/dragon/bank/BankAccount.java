@@ -44,7 +44,11 @@ public class BankAccount {
      * @param amount
      */
     public void deposit (double amount){
-
+        if(!isAmountValid(amount)){
+            throw new IllegalArgumentException("Must withdraw a positive amount!");
+        }
+        balance += amount;
+        roundToCent();
     }
 
     /**
