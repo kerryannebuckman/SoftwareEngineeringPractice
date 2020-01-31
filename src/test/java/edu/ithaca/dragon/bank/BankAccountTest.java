@@ -112,7 +112,7 @@ class BankAccountTest {
     //new- This will be accurate to the cents
         //withdraw 0
         BankAccount bankAccount2 = new BankAccount("a@b.com", 200);
-        bankAccount2.withdraw(0);
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(0));
 
         //withdraw .01
         bankAccount2.withdraw(0.01);

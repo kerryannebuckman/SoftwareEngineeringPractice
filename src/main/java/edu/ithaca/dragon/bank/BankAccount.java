@@ -73,7 +73,7 @@ public class BankAccount {
      * accurate to cents (the 100ths place) because you should not be able to take out half a penny)
      */
     public void withdraw (double amount) throws IllegalArgumentException {
-        if(amount < 0){
+        if(!isAmountValid(amount)){
             throw new IllegalArgumentException("Must withdraw a positive amount!");
         }
         if(amount > balance){
