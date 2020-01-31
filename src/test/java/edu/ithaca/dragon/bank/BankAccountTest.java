@@ -391,4 +391,39 @@ class BankAccountTest {
         assertEquals(0, bankAccount2.getBalance());
     }
 
+    @Test
+    void depositTest(){
+        BankAccount bankAccount = new BankAccount("a@b.com", 0);
+
+        bankAccount.deposit(1);
+        assertTrue(bankAccount.getBalance()==1);
+
+        bankAccount.deposit(16);
+        assertTrue(bankAccount.getBalance()==17);
+
+        bankAccount.deposit(1.23);
+        assertTrue(bankAccount.getBalance()==18.23);
+
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(-1.23));
+
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(-0.01));
+
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(0));
+
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(-1.23));
+
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(-1.99));
+
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(1.232));
+
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(8.001));
+
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(13.007));
+
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(45.000009));
+
+
+
+    }
+
 }

@@ -39,6 +39,27 @@ public class BankAccount {
     }
 
     /**
+     * adds money to users account
+     * Throws illegal argument exception if amount is negative or has a significant digit past 2 digits
+     * @param amount
+     */
+    public void deposit (double amount){
+
+    }
+
+    /**
+     * Withdraws amount from one account and deposits it in the receivingAccount
+     * Throws illegal argument exception if amount is negative or has a significant digit past 2 digits
+     * @param receivingAccount
+     * @param amount
+     */
+    public void transfer (BankAccount receivingAccount, double amount){
+
+    }
+
+
+
+    /**
      *Takes an amount and if it has a significant digit past the second digit or is negative, it will return false
      * @param amount
      * @return true/false
