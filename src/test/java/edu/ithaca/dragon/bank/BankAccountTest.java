@@ -185,7 +185,7 @@ class BankAccountTest {
         assertFalse(BankAccount.isEmailValid("abc_@mail.com"));
 
         //dash on left edge
-        assertFalse(BankAccount.isEmailValid("_def@mail.com"));
+        assertTrue(BankAccount.isEmailValid("_def@mail.com"));
     //end
 
     //periods valid
@@ -206,7 +206,7 @@ class BankAccountTest {
         assertFalse(BankAccount.isEmailValid("abc.@mail.com"));
 
         //period on left edge
-        assertFalse(BankAccount.isEmailValid(".def@mail.com"));
+        assertTrue(BankAccount.isEmailValid(".def@mail.com"));
     //end
 
     //special symbols invalid
