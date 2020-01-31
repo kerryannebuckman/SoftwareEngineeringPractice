@@ -1,5 +1,8 @@
 package edu.ithaca.dragon.bank;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class BankAccount {
 
     private String email;
@@ -37,10 +40,22 @@ public class BankAccount {
      */
 
     public static boolean isAmountValid(double amount) {
-        if (amount > Math.round(amount * 100.0) / 100.0) {
+        if(amount<=0){
             return false;
         }
-        return false;
+        else{
+            DecimalFormat df = new DecimalFormat("#.##");
+            df.setRoundingMode(RoundingMode.FLOOR);
+            DecimalFormat df2 = new DecimalFormat("#.######");
+            df2.setRoundingMode(RoundingMode.FLOOR);
+            System.out.println((Math.round(amount * 100.0) / 100.0));
+            String amountR2 = (df.format(amount));
+            String amountR3 = (df2.format(amount));
+            if ((Double.parseDouble(amountR2) < (Double.parseDouble(amountR3)))){
+                return false;
+            }
+            return true;
+        }
     }
 
 

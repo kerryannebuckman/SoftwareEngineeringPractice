@@ -22,7 +22,7 @@ class BankAccountTest {
     @Test
     void isAmountValidTest() {
         //Positive 2 decimals
-        assertTrue(BankAccount.isAmountValid(1.23));
+        assertTrue(BankAccount.isAmountValid(11.23));
 
         //Positive 2 decimals
         //border
