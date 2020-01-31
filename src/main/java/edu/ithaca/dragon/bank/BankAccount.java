@@ -17,8 +17,13 @@ public class BankAccount {
     public BankAccount(String email, double startingBalance){
         if (isEmailValid(email)){
             this.email = email;
-            this.balance = startingBalance;
-            roundToCent();
+            if(isAmountValid(startingBalance) || startingBalance == 0){
+                this.balance = startingBalance;
+                roundToCent();
+            }
+            else{
+                throw new IllegalArgumentException("Balance: " + startingBalance + " is invalid, cannot create account");
+            }
         }
         else {
             throw new IllegalArgumentException("Email address: " + email + " is invalid, cannot create account");
@@ -48,7 +53,6 @@ public class BankAccount {
             df.setRoundingMode(RoundingMode.FLOOR);
             DecimalFormat df2 = new DecimalFormat("#.##########"); //up to 10 decimals
             df2.setRoundingMode(RoundingMode.FLOOR);
-            System.out.println((Math.round(amount * 100.0) / 100.0));
             String amountR2 = (df.format(amount));
             String amountR3 = (df2.format(amount));
 
