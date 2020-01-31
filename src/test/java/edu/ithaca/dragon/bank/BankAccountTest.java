@@ -136,7 +136,16 @@ class BankAccountTest {
         assertEquals(0, bankAccount4.getBalance());
     //end
 
-        // All Border Cases
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(-0.001));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(-12.000001));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(0));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(-1.0));
+
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(0.001));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(12.000001));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount2.withdraw(0.00099));
+
+
     }
 
     @Test
@@ -365,6 +374,21 @@ class BankAccountTest {
         assertEquals(200, bankAccount.getBalance());
         //check for exception thrown correctly
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", -100));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", -1));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", -.01));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", .0001));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", -.001));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", -100));
+
+
+
+
+
+
+        BankAccount bankAccount2 = new BankAccount("a@b.com", 0);
+        assertEquals("a@b.com", bankAccount2.getEmail());
+        assertEquals(0, bankAccount2.getBalance());
     }
 
 }

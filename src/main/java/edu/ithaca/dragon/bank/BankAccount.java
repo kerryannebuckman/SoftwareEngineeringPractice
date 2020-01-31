@@ -34,9 +34,9 @@ public class BankAccount {
     }
 
     /**
-     *
+     *Takes an amount and if it has a significant digit past the second digit or is negative, it will return false
      * @param amount
-     * @return
+     * @return true/false
      */
 
     public static boolean isAmountValid(double amount) {
@@ -46,11 +46,12 @@ public class BankAccount {
         else{
             DecimalFormat df = new DecimalFormat("#.##");
             df.setRoundingMode(RoundingMode.FLOOR);
-            DecimalFormat df2 = new DecimalFormat("#.######");
+            DecimalFormat df2 = new DecimalFormat("#.##########"); //up to 10 decimals
             df2.setRoundingMode(RoundingMode.FLOOR);
             System.out.println((Math.round(amount * 100.0) / 100.0));
             String amountR2 = (df.format(amount));
             String amountR3 = (df2.format(amount));
+
             if ((Double.parseDouble(amountR2) < (Double.parseDouble(amountR3)))){
                 return false;
             }
