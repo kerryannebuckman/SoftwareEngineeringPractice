@@ -422,8 +422,38 @@ class BankAccountTest {
 
         assertThrows(IllegalArgumentException.class, ()-> bankAccount.deposit(45.000009));
 
+    }
 
+    @Test
+    void transferTest(){
+        BankAccount bankAccount1 = new BankAccount("a@b.com", 100);
+        BankAccount bankAccount2 = new BankAccount("b@a.com", 0);
 
+        bankAccount1.transfer(bankAccount2, .99);
+        assertTrue(bankAccount1.getBalance()==99.01);
+        assertTrue(bankAccount2.getBalance()==.99);
+
+        bankAccount1.transfer(bankAccount2, .01);
+        assertTrue(bankAccount1.getBalance()==99);
+        assertTrue(bankAccount2.getBalance()==1);
+
+        bankAccount1.transfer(bankAccount2, 1);
+        assertTrue(bankAccount1.getBalance()==98);
+        assertTrue(bankAccount2.getBalance()==2);
+
+        bankAccount1.transfer(bankAccount2, 12);
+        assertTrue(bankAccount1.getBalance()==86);
+        assertTrue(bankAccount2.getBalance()==14);
+
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount1.transfer(bankAccount2, -2));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount1.transfer(bankAccount2, 0));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount1.transfer(bankAccount2, 1.001));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount1.transfer(bankAccount2, 12.008));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount1.transfer(bankAccount2, .001));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount1.transfer(bankAccount2, .00999999));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount1.transfer(bankAccount2, .999999));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount1.transfer(bankAccount2, 87));
+        assertThrows(IllegalArgumentException.class, ()-> bankAccount1.transfer(bankAccount2, 86.01));
     }
 
 }
