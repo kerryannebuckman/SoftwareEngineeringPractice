@@ -20,6 +20,77 @@ class BankAccountTest {
     }
 
     @Test
+    void isAmountValidTest() {
+        //Positive 2 decimals
+        assertTrue(BankAccount.isAmountValid(1.23));
+
+        //Positive 2 decimals
+        //border
+        assertTrue(BankAccount.isAmountValid(1.00));
+
+        //smallest valid decimal
+        //border
+        assertTrue(BankAccount.isAmountValid(0.01));
+
+        //biggest valid decimal
+        //border
+        assertTrue(BankAccount.isAmountValid(0.99));
+
+        //Positive 3 decimals, last isn't 0
+        //border
+        assertFalse(BankAccount.isAmountValid(0.001));
+
+        //Positive 3 decimals, last isn't 0
+        assertFalse(BankAccount.isAmountValid(0.006));
+
+        //Positive 3 decimals, last isn't 0
+        //border
+        assertFalse(BankAccount.isAmountValid(0.009));
+
+        //Positive 3 decimals, last decimal is 0
+        //border
+        assertTrue(BankAccount.isAmountValid(1.000));
+
+        //0
+        //border
+        assertFalse(BankAccount.isAmountValid(0));
+
+        //Negative 2 decimals
+        assertFalse(BankAccount.isAmountValid(-1.23));
+
+        //Negative 2 decimals
+        //border
+        assertFalse(BankAccount.isAmountValid(-1.00));
+
+        //Negative 2 decimals
+        //border
+        assertFalse(BankAccount.isAmountValid(-0.99));
+
+        //smallest invalid decimal
+        //border
+        assertFalse(BankAccount.isAmountValid(-0.01));
+
+        //3 decimals last 0 negative
+        //border
+        assertFalse(BankAccount.isAmountValid(-1.000));
+
+        //3 decimals last not 0 negative
+        //border
+        assertFalse(BankAccount.isAmountValid(-1.001));
+
+        //3 decimals last not 0 negative
+        //border
+        assertFalse(BankAccount.isAmountValid(-1.009));
+
+        //3 decimals last not 0 negative
+        assertFalse(BankAccount.isAmountValid(-1.006));
+
+        //3 decimals last not 0 negative
+        assertFalse(BankAccount.isAmountValid(-1.004));
+
+    }
+
+    @Test
     void withdrawTest() {
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
 

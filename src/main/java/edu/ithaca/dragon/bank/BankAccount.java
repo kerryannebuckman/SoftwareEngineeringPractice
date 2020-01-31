@@ -30,6 +30,22 @@ public class BankAccount {
     }
 
     /**
+     *
+     * @param amount
+     * @return
+     */
+
+    public static boolean isAmountValid(double amount) {
+        if (amount > Math.round(amount * 100.0) / 100.0) {
+            return false;
+        }
+        return false;
+    }
+
+
+
+
+    /**
      * @post reduces the balance by amount if amount is non-negative and smaller than balance
      * if amount is negative, throw invalid argument
      * if balance - amount = to a negative number, throw runtime exception
